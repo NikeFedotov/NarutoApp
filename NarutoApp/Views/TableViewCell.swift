@@ -18,6 +18,24 @@ final class TableViewCell: UITableViewCell {
             characterImageView.backgroundColor = .white
         }
     }
+    
+    private let networkManager = NetworkManager.shared
  
+    // MARK: - Public methods
+    func configure(with character: Character?) {
+        guard let character else { return }
+        guard let characterImage = character.images?.first else { return }
+        nameLabel.text = character.name
+        if let characterImage {
+            networkManager.fetchImage(from: characterImage) { result in
+                switch result {
+                case .success(let data):
+                    self.characterImageView.image = UIImage(data: data)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
 
 }

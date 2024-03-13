@@ -8,23 +8,18 @@
 import Foundation
 
 struct Naruto: Decodable {
-    let characters: [Character]
+    let characters: [Character]?
 }
 
 struct Character: Decodable {
-    let name: String
-    let images: [URL]
-    let family: [String: String]?
-    let jutsu: [String]?
-    let natureType: [String]?
-    let personal: [Personal]?
-    let uniqueTraits: [String]?
+    let name: String?
+    let images: [URL?]?
+//    let family: [String: String]?
+//    let jutsu: [String?]?
+//    let natureType: [String?]?
+//    let personal: [Personal?]?
+//    let uniqueTraits: [String?]
     
-    var description: String {
-        """
-    Name: \(name)
-    """
-    }
 }
 
 struct Personal: Decodable {
@@ -56,7 +51,7 @@ enum NarutoAPI {
     var url: URL {
         switch self {
         case .baseURL:
-            return URL(string: "https://narutodb.xyz/api/character")!
+            return URL(string: "https://narutodb.xyz/api/character?page=1&limit=1431")!
         }
     }
 }
