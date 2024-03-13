@@ -10,6 +10,17 @@ import UIKit
 final class CharactersTableViewController: UITableViewController {
     
     //MARK: Private properties
+    private var naruto: Naruto?
+    private let networkManager = NetworkManager.shared
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filteredCharacter: [Character] = []
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
 
     
     // MARK: - View Life Cycle
@@ -18,6 +29,8 @@ final class CharactersTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 70
         tableView.backgroundColor = .black
+        
+        fetchData(from: NarutoAPI.baseURL.url)
 
     }
     
@@ -30,29 +43,36 @@ final class CharactersTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Private methods
+    private func fetchData(from url: URL?) {
+        networkManager.fetch(Naruto.self, from: url) { result in
+            switch result {
+            case .success(let data):
+                self.naruto = data
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 
 
     // MARK: - UITableViewDataSource
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        isFiltering ? filteredCharacter.count : naruto?.characters?.count ?? 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = cell as? TableViewCell else { return UITableViewCell() }
+        let character = isFiltering
+        ? filteredCharacter[indexPath.row]
+        : naruto?.characters?[indexPath.row]
+        cell.configure(with: character)
         return cell
     }
-    */
 
     /*
     // Override to support rearranging the table view.
