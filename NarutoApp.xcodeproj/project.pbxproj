@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		118910492BA2218900DA8FDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910482BA2218900DA8FDE /* AppDelegate.swift */; };
 		1189104B2BA2218900DA8FDE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189104A2BA2218900DA8FDE /* SceneDelegate.swift */; };
-		1189104D2BA2218900DA8FDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189104C2BA2218900DA8FDE /* ViewController.swift */; };
 		118910502BA2218900DA8FDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1189104E2BA2218900DA8FDE /* Main.storyboard */; };
 		118910522BA2218B00DA8FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 118910512BA2218B00DA8FDE /* Assets.xcassets */; };
 		118910552BA2218B00DA8FDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 118910532BA2218B00DA8FDE /* LaunchScreen.storyboard */; };
+		1189105D2BA2220C00DA8FDE /* CharactersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189105C2BA2220C00DA8FDE /* CharactersTableViewController.swift */; };
+		118910652BA2234400DA8FDE /* Naruto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910642BA2234400DA8FDE /* Naruto.swift */; };
+		118910672BA2235E00DA8FDE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910662BA2235E00DA8FDE /* TableViewCell.swift */; };
+		1189106A2BA22D8600DA8FDE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910692BA22D8600DA8FDE /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		118910452BA2218900DA8FDE /* NarutoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarutoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		118910482BA2218900DA8FDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1189104A2BA2218900DA8FDE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1189104C2BA2218900DA8FDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1189104F2BA2218900DA8FDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		118910512BA2218B00DA8FDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		118910542BA2218B00DA8FDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		118910562BA2218B00DA8FDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1189105C2BA2220C00DA8FDE /* CharactersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersTableViewController.swift; sourceTree = "<group>"; };
+		118910642BA2234400DA8FDE /* Naruto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Naruto.swift; sourceTree = "<group>"; };
+		118910662BA2235E00DA8FDE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		118910692BA22D8600DA8FDE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,74 @@
 		118910472BA2218900DA8FDE /* NarutoApp */ = {
 			isa = PBXGroup;
 			children = (
-				118910482BA2218900DA8FDE /* AppDelegate.swift */,
-				1189104A2BA2218900DA8FDE /* SceneDelegate.swift */,
-				1189104C2BA2218900DA8FDE /* ViewController.swift */,
-				1189104E2BA2218900DA8FDE /* Main.storyboard */,
-				118910512BA2218B00DA8FDE /* Assets.xcassets */,
-				118910532BA2218B00DA8FDE /* LaunchScreen.storyboard */,
-				118910562BA2218B00DA8FDE /* Info.plist */,
+				1189105E2BA222A700DA8FDE /* Models */,
+				1189105F2BA222BA00DA8FDE /* ViewControllers */,
+				118910632BA2232100DA8FDE /* Views */,
+				118910682BA2239B00DA8FDE /* Services */,
+				118910602BA222CE00DA8FDE /* SupportingFiles */,
+				118910612BA222DC00DA8FDE /* Storyboards */,
+				118910622BA222EB00DA8FDE /* Source */,
 			);
 			path = NarutoApp;
+			sourceTree = "<group>";
+		};
+		1189105E2BA222A700DA8FDE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				118910642BA2234400DA8FDE /* Naruto.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1189105F2BA222BA00DA8FDE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1189105C2BA2220C00DA8FDE /* CharactersTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		118910602BA222CE00DA8FDE /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				118910482BA2218900DA8FDE /* AppDelegate.swift */,
+				1189104A2BA2218900DA8FDE /* SceneDelegate.swift */,
+				118910562BA2218B00DA8FDE /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		118910612BA222DC00DA8FDE /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1189104E2BA2218900DA8FDE /* Main.storyboard */,
+				118910532BA2218B00DA8FDE /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		118910622BA222EB00DA8FDE /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				118910512BA2218B00DA8FDE /* Assets.xcassets */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		118910632BA2232100DA8FDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				118910662BA2235E00DA8FDE /* TableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		118910682BA2239B00DA8FDE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				118910692BA22D8600DA8FDE /* NetworkManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +203,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1189104D2BA2218900DA8FDE /* ViewController.swift in Sources */,
+				1189106A2BA22D8600DA8FDE /* NetworkManager.swift in Sources */,
+				118910672BA2235E00DA8FDE /* TableViewCell.swift in Sources */,
+				118910652BA2234400DA8FDE /* Naruto.swift in Sources */,
 				118910492BA2218900DA8FDE /* AppDelegate.swift in Sources */,
+				1189105D2BA2220C00DA8FDE /* CharactersTableViewController.swift in Sources */,
 				1189104B2BA2218900DA8FDE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,12 +357,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XYDNW9XVU2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NarutoApp/Info.plist;
+				INFOPLIST_FILE = NarutoApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +370,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fun.swiftpractice.NarutoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +388,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XYDNW9XVU2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NarutoApp/Info.plist;
+				INFOPLIST_FILE = NarutoApp/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +401,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fun.swiftpractice.NarutoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
