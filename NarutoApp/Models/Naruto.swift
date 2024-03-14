@@ -8,14 +8,14 @@
 import Foundation
 
 struct Naruto: Decodable {
-    let characters: [Character]?
+    let characters: [Character]
 }
 
 struct Character: Decodable {
-    let name: String?
+    let name: String
     let images: [URL?]?
 //    let family: [String: String]?
-//    let jutsu: [String?]?
+    let jutsu: [String?]?
 //    let natureType: [String?]?
 //    let personal: [Personal?]?
 //    let uniqueTraits: [String?]

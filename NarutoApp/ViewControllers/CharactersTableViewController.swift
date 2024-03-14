@@ -30,8 +30,9 @@ final class CharactersTableViewController: UITableViewController {
         tableView.rowHeight = 70
         tableView.backgroundColor = .black
         
+        setupNavigationBar()
+        setupSearchController()
         fetchData(from: NarutoAPI.baseURL.url)
-
     }
     
     /*
@@ -45,6 +46,33 @@ final class CharactersTableViewController: UITableViewController {
     */
     
     // MARK: - Private methods
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.barTintColor = .white
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.font = UIFont.boldSystemFont(ofSize: 17)
+            textField.textColor = .white
+        }
+    }
+    
+    private func setupNavigationBar() {
+        title = "Naruto"
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = .black
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+    }
+    
     private func fetchData(from url: URL?) {
         networkManager.fetch(Naruto.self, from: url) { result in
             switch result {
@@ -61,7 +89,7 @@ final class CharactersTableViewController: UITableViewController {
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        isFiltering ? filteredCharacter.count : naruto?.characters?.count ?? 0
+        isFiltering ? filteredCharacter.count : naruto?.characters.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +97,7 @@ final class CharactersTableViewController: UITableViewController {
         guard let cell = cell as? TableViewCell else { return UITableViewCell() }
         let character = isFiltering
         ? filteredCharacter[indexPath.row]
-        : naruto?.characters?[indexPath.row]
+        : naruto?.characters[indexPath.row]
         cell.configure(with: character)
         return cell
     }
@@ -89,5 +117,18 @@ final class CharactersTableViewController: UITableViewController {
     }
     */
 
-
+}
+// MARK: - UISearchResultsUpdating
+extension CharactersTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text ?? "")
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        filteredCharacter = naruto?.characters.filter { character in
+            character.name.lowercased().contains(searchText.lowercased())
+        } ?? []
+        
+        tableView.reloadData()
+    }
 }

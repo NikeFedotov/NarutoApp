@@ -69,8 +69,8 @@
         <scene sceneID="IQG-jK-Flz">
             <objects>
                 <navigationController id="2Ta-vX-hfb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FpV-oJ-2Oh">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="FpV-oJ-2Oh">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
