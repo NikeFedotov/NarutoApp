@@ -16,6 +16,7 @@
 		118910652BA2234400DA8FDE /* Naruto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910642BA2234400DA8FDE /* Naruto.swift */; };
 		118910672BA2235E00DA8FDE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910662BA2235E00DA8FDE /* TableViewCell.swift */; };
 		1189106A2BA22D8600DA8FDE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910692BA22D8600DA8FDE /* NetworkManager.swift */; };
+		1189109A2BA5B54500DA8FDE /* DetailsCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118910992BA5B54500DA8FDE /* DetailsCharacterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		118910642BA2234400DA8FDE /* Naruto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Naruto.swift; sourceTree = "<group>"; };
 		118910662BA2235E00DA8FDE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		118910692BA22D8600DA8FDE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		118910992BA5B54500DA8FDE /* DetailsCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCharacterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				1189105C2BA2220C00DA8FDE /* CharactersTableViewController.swift */,
+				118910992BA5B54500DA8FDE /* DetailsCharacterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				1189106A2BA22D8600DA8FDE /* NetworkManager.swift in Sources */,
 				118910672BA2235E00DA8FDE /* TableViewCell.swift in Sources */,
 				118910652BA2234400DA8FDE /* Naruto.swift in Sources */,
+				1189109A2BA5B54500DA8FDE /* DetailsCharacterViewController.swift in Sources */,
 				118910492BA2218900DA8FDE /* AppDelegate.swift in Sources */,
 				1189105D2BA2220C00DA8FDE /* CharactersTableViewController.swift in Sources */,
 				1189104B2BA2218900DA8FDE /* SceneDelegate.swift in Sources */,

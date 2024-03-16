@@ -26,15 +26,14 @@ final class TableViewCell: UITableViewCell {
         guard let character else { return }
         guard let characterImage = character.images?.first else { return }
         nameLabel.text = character.name
-        if let characterImage {
             networkManager.fetchImage(from: characterImage) { result in
                 switch result {
                 case .success(let data):
                     self.characterImageView.image = UIImage(data: data)
-                case .failure(let error):
-                    print(error)
+                case .failure(_):
+                    self.characterImageView.image = UIImage(named: "noImage")
+//                    print(error)
                 }
-            }
         }
     }
 

@@ -35,17 +35,21 @@ final class CharactersTableViewController: UITableViewController {
         fetchData(from: NarutoAPI.baseURL.url)
     }
     
-    /*
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let character = isFiltering
+        ? filteredCharacter[indexPath.row]
+        : naruto?.characters[indexPath.row]
+        guard let detailsVC = segue.destination as? DetailsCharacterViewController else { return }
+        detailsVC.character = character
     }
-    */
-    
-    // MARK: - Private methods
+}
+
+// MARK: - Private methods
+extension CharactersTableViewController {
     
     private func setupSearchController() {
         searchController.searchResultsUpdater = self
@@ -84,10 +88,10 @@ final class CharactersTableViewController: UITableViewController {
             }
         }
     }
+}
 
-
-    // MARK: - UITableViewDataSource
-
+// MARK: - UITableViewDataSource
+extension CharactersTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         isFiltering ? filteredCharacter.count : naruto?.characters.count ?? 0
     }
@@ -101,23 +105,8 @@ final class CharactersTableViewController: UITableViewController {
         cell.configure(with: character)
         return cell
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
 }
+
 // MARK: - UISearchResultsUpdating
 extension CharactersTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
