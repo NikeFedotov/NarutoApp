@@ -21,7 +21,11 @@ struct Character: Decodable {
     
     var description: String {
         """
-        Name: \(name)
+        Name:   \(name)
+        
+        Jutsu:  \(jutsu?.formatted() ?? "Unknown")
+        
+        Nature Type: \(natureType?.formatted() ?? "Unknown")
         """
     }
     

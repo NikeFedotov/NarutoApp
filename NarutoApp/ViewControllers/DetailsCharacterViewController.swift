@@ -12,7 +12,7 @@ final class DetailsCharacterViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var characterImageView: UIImageView! {
         didSet {
-            characterImageView.contentMode = .scaleAspectFit
+            characterImageView.contentMode = .scaleAspectFill
             characterImageView.clipsToBounds = true
             characterImageView.layer.cornerRadius = characterImageView.frame.height / 2
             characterImageView.backgroundColor = .white
