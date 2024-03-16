@@ -3,11 +3,12 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Naruto-->
         <scene sceneID="vjD-0p-vZJ">
             <objects>
                 <tableViewController id="qKJ-aS-aTw" customClass="CharactersTableViewController" customModule="NarutoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,6 +52,7 @@
                                 <connections>
                                     <outlet property="characterImageView" destination="f25-gP-kVB" id="IUw-q3-SET"/>
                                     <outlet property="nameLabel" destination="LvU-un-0G0" id="7dg-zv-rTN"/>
+                                    <segue destination="ujY-62-JJL" kind="show" identifier="characterInfo" id="0TK-EW-5q9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -59,11 +61,53 @@
                             <outlet property="delegate" destination="qKJ-aS-aTw" id="G28-Hq-KZg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="DjF-r7-lms"/>
+                    <navigationItem key="navigationItem" title="Naruto" id="DjF-r7-lms"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBC-rq-UHj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-17.557251908396946" y="-6.3380281690140849"/>
+        </scene>
+        <!--Details Character View Controller-->
+        <scene sceneID="a4Y-aD-26z">
+            <objects>
+                <viewController id="ujY-62-JJL" customClass="DetailsCharacterViewController" customModule="NarutoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PK3-zl-Caz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mjh-MX-vsx">
+                                <rect key="frame" x="76.666666666666686" y="171" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Rej-3E-WHz"/>
+                                    <constraint firstAttribute="height" constant="240" id="w1s-fc-Vvq"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c3-h3-BBT">
+                                <rect key="frame" x="20" y="451" width="353" height="0.0"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YNS-2V-Q7J"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YNS-2V-Q7J" firstAttribute="trailing" secondItem="8c3-h3-BBT" secondAttribute="trailing" constant="20" id="3oo-h8-aRR"/>
+                            <constraint firstItem="Mjh-MX-vsx" firstAttribute="top" secondItem="YNS-2V-Q7J" secondAttribute="top" constant="16" id="8TQ-I8-wk1"/>
+                            <constraint firstItem="8c3-h3-BBT" firstAttribute="top" secondItem="Mjh-MX-vsx" secondAttribute="bottom" constant="40" id="QFM-oS-dnE"/>
+                            <constraint firstItem="8c3-h3-BBT" firstAttribute="leading" secondItem="YNS-2V-Q7J" secondAttribute="leading" constant="20" id="fYp-4E-1kT"/>
+                            <constraint firstItem="Mjh-MX-vsx" firstAttribute="centerX" secondItem="PK3-zl-Caz" secondAttribute="centerX" id="zkR-Ac-4fA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IbS-Tc-IOh"/>
+                    <connections>
+                        <outlet property="characterDescriprionLabel" destination="8c3-h3-BBT" id="h4x-am-Ses"/>
+                        <outlet property="characterImageView" destination="Mjh-MX-vsx" id="yv6-4f-8R5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M1v-Yy-gL3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="761" y="-6"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IQG-jK-Flz">
