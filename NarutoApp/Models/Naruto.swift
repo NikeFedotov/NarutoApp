@@ -13,8 +13,7 @@ struct Naruto: Decodable {
 
 struct Character: Decodable {
     let name: String
-    let images: [URL]?
-    let family: Family?
+    let images: [String]?
 //    let personal: Personal?
     let jutsu: [String]?
     let natureType: [String]?
@@ -27,6 +26,31 @@ struct Character: Decodable {
         
         Nature Type: \(natureType?.formatted() ?? "Unknown")
         """
+    }
+    
+    init(name: String, images: [String]?, jutsu: [String]?, natureType: [String]?) {
+        self.name = name
+        self.images = images
+        self.jutsu = jutsu
+        self.natureType = natureType
+    }
+    
+    init(from dictionary: [String:Any] ) {
+        self.name = dictionary["name"] as? String ?? ""
+        self.images = dictionary["images"] as? [String]
+        self.jutsu = dictionary["jutsu"] as? [String]
+        self.natureType = dictionary["natureType"] as? [String]
+    }
+    
+    static func getCharacters(from value: Any) -> [Character] {
+        var naruto: [Character] = []
+        guard let narutoData = value as? [String: Any] else { return [] }
+        guard let charactersData = narutoData["characters"] as? [[String:Any]] else { return [] }
+        for characterData in charactersData {
+            let narutoCharacter = Character(from: characterData)
+            naruto.append(narutoCharacter)
+        }
+        return naruto
     }
     
 }

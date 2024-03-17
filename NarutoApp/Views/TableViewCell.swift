@@ -22,17 +22,17 @@ final class TableViewCell: UITableViewCell {
     private let networkManager = NetworkManager.shared
  
     // MARK: - Public methods
-    func configure(with character: Character?) {
-        guard let character else { return }
-        guard let characterImage = character.images?.first else { return }
+    func configure(with character: Character) {
         nameLabel.text = character.name
-            networkManager.fetchImage(from: characterImage) { result in
-                switch result {
-                case .success(let data):
-                    self.characterImageView.image = UIImage(data: data)
-                case .failure(_):
-                    self.characterImageView.image = UIImage(named: "noImage")
-                }
+        
+        guard let characterImage = character.images?.first else { return }
+        networkManager.fetchData(from: characterImage) { result in
+            switch result {
+            case .success(let imageData):
+                self.characterImageView.image = UIImage(data: imageData)
+            case .failure(_):
+                self.characterImageView.image = UIImage(named: "noImage")
+            }
         }
     }
 
