@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Alamofire
 
 final class CharactersTableViewController: UITableViewController {
     
     //MARK: Private properties
-    private var naruto: Naruto?
+    private var naruto: [Character] = []
     private let networkManager = NetworkManager.shared
     private let searchController = UISearchController(searchResultsController: nil)
     private var filteredCharacter: [Character] = []
@@ -26,13 +27,12 @@ final class CharactersTableViewController: UITableViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.viewDidLoad()
         tableView.rowHeight = 70
         tableView.backgroundColor = .black
         
         setupNavigationBar()
         setupSearchController()
-        fetchData(from: NarutoAPI.baseURL.url)
+        fetchCharacters()
     }
     
 
@@ -42,7 +42,7 @@ final class CharactersTableViewController: UITableViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         let character = isFiltering
         ? filteredCharacter[indexPath.row]
-        : naruto?.characters[indexPath.row]
+        : naruto[indexPath.row]
         guard let detailsVC = segue.destination as? DetailsCharacterViewController else { return }
         detailsVC.character = character
     }
@@ -77,11 +77,12 @@ extension CharactersTableViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
-    private func fetchData(from url: URL?) {
-        networkManager.fetch(Naruto.self, from: url) { result in
+    
+    private func fetchCharacters() {
+        networkManager.fetchCharacters(from: NarutoAPI.baseURL.url) { result in
             switch result {
-            case .success(let data):
-                self.naruto = data
+            case .success(let characters):
+                self.naruto = characters
                 self.tableView.reloadData()
             case .failure(let error):
                 print(error)
@@ -93,7 +94,7 @@ extension CharactersTableViewController {
 // MARK: - UITableViewDataSource
 extension CharactersTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        isFiltering ? filteredCharacter.count : naruto?.characters.count ?? 0
+        isFiltering ? filteredCharacter.count : naruto.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,7 +102,7 @@ extension CharactersTableViewController {
         guard let cell = cell as? TableViewCell else { return UITableViewCell() }
         let character = isFiltering
         ? filteredCharacter[indexPath.row]
-        : naruto?.characters[indexPath.row]
+        : naruto[indexPath.row]
         cell.configure(with: character)
         return cell
     }
@@ -114,9 +115,9 @@ extension CharactersTableViewController: UISearchResultsUpdating {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        filteredCharacter = naruto?.characters.filter { character in
+        filteredCharacter = naruto.filter { character in
             character.name.lowercased().contains(searchText.lowercased())
-        } ?? []
+        } 
         
         tableView.reloadData()
     }

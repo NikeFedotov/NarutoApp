@@ -35,12 +35,12 @@ final class DetailsCharacterViewController: UIViewController {
     
     private func fetchImage() {
         guard let imageURL = character.images?.first else { return }
-        networkManager.fetchImage(from: imageURL) { result in
+        networkManager.fetchData(from: imageURL) { result in
             switch result {
-            case .success(let image):
-                self.characterImageView.image = UIImage(data: image)
-            case .failure(let error):
-                print(error)
+            case .success(let imageData):
+                self.characterImageView.image = UIImage(data: imageData)
+            case .failure(_):
+                self.characterImageView.image = UIImage(named: "noImage")
             }
         }
     }

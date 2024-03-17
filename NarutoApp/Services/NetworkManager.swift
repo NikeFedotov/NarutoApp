@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum NetworkError: Error {
     case invalidURL
@@ -19,44 +20,30 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetch<T: Decodable>(
-        _ type: T.Type,
-        from url: URL?,
-        with completion: @escaping(Result<T, NetworkError>) -> Void
-    ) {
-        guard let url = url else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else {
-                completion(.failure(.noData))
-                print(error?.localizedDescription ?? "No description error")
-                return
-            }
-            do {
-                let dataModel = try JSONDecoder().decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(dataModel))
+    func fetchCharacters(from url: URL, completion: @escaping(Result<[Character], AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let characters = Character.getCharacters(from: value)
+                    completion(.success(characters))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            } catch {
-                completion(.failure(.decodingError))
             }
-        }.resume()
     }
     
-    func fetchImage(from url: URL, completion: @escaping(Result<Data, NetworkError>) -> Void) {
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: url) else {
-                DispatchQueue.main.async {
-                    completion(.failure(.noData))
+    func fetchData(from url: String, completion: @escaping(Result<Data, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { dataResponse in
+                switch dataResponse.result {
+                case .success(let imageData):
+                    completion(.success(imageData))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-                return
             }
-            DispatchQueue.main.async {
-                completion(.success(imageData))
-            }
-        }
     }
 }
