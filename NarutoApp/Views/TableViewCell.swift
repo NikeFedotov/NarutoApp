@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class TableViewCell: UITableViewCell {
-
+    // MARK: - IBOutlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var characterImageView: UIImageView! {
         didSet {
@@ -19,21 +20,19 @@ final class TableViewCell: UITableViewCell {
         }
     }
     
+    //MARK: Private properties
     private let networkManager = NetworkManager.shared
  
     // MARK: - Public methods
     func configure(with character: Character) {
         nameLabel.text = character.name
-        
+        let placeholder = UIImage(named: "noImage")
         guard let characterImage = character.images?.first else { return }
-        networkManager.fetchData(from: characterImage) { result in
-            switch result {
-            case .success(let imageData):
-                self.characterImageView.image = UIImage(data: imageData)
-            case .failure(_):
-                self.characterImageView.image = UIImage(named: "noImage")
-            }
-        }
+        guard let url = URL(string: characterImage) else { return }
+        characterImageView.kf.setImage(
+            with: url,
+            placeholder: placeholder,
+            options: [ .transition(.fade(0.25)) ]
+        )
     }
-
 }

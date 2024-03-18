@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class DetailsCharacterViewController: UIViewController {
     
@@ -26,22 +27,19 @@ final class DetailsCharacterViewController: UIViewController {
     // MARK: - Private Properties
     private let networkManager = NetworkManager.shared
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         characterDescriprionLabel.text = character.description
         fetchImage()
     }
-    
+    // MARK: - Private methods
     private func fetchImage() {
-        guard let imageURL = character.images?.first else { return }
-        networkManager.fetchData(from: imageURL) { result in
-            switch result {
-            case .success(let imageData):
-                self.characterImageView.image = UIImage(data: imageData)
-            case .failure(_):
-                self.characterImageView.image = UIImage(named: "noImage")
-            }
-        }
+        let processor = DownsamplingImageProcessor(size: characterImageView.bounds.size)
+        guard let imageURL = URL(string: character.images?.first ?? "") else { return }
+        characterImageView.kf.setImage(
+            with: imageURL,
+            options: [ .processor(processor), .transition(.fade(0.25)) ])
     }
 }

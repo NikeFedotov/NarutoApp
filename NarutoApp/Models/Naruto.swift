@@ -7,10 +7,24 @@
 
 import Foundation
 
+//MARK: NarutoAPI
+enum NarutoAPI {
+    case baseURL
+    
+    var url: URL {
+        switch self {
+        case .baseURL:
+            return URL(string: "https://narutodb.xyz/api/character?page=1&limit=1431")!
+        }
+    }
+}
+
+//MARK: Naruto
 struct Naruto: Decodable {
     let characters: [Character]
 }
 
+//MARK: Character
 struct Character: Decodable {
     let name: String
     let images: [String]?
@@ -35,26 +49,9 @@ struct Character: Decodable {
         self.natureType = natureType
     }
     
-    init(from dictionary: [String:Any] ) {
-        self.name = dictionary["name"] as? String ?? ""
-        self.images = dictionary["images"] as? [String]
-        self.jutsu = dictionary["jutsu"] as? [String]
-        self.natureType = dictionary["natureType"] as? [String]
-    }
-    
-    static func getCharacters(from value: Any) -> [Character] {
-        var naruto: [Character] = []
-        guard let narutoData = value as? [String: Any] else { return [] }
-        guard let charactersData = narutoData["characters"] as? [[String:Any]] else { return [] }
-        for characterData in charactersData {
-            let narutoCharacter = Character(from: characterData)
-            naruto.append(narutoCharacter)
-        }
-        return naruto
-    }
-    
 }
 
+//MARK: Personal
 struct Personal: Decodable {
     let species: String?
     let status: Status?
@@ -70,16 +67,19 @@ struct Personal: Decodable {
     let clan: String?
 }
 
+//MARK: Status
 enum Status: String, Decodable {
     case deceased = "Deceased"
     case incapacitated = "Incapacitated"
 }
 
+//MARK: Sex
 enum Sex: String, Decodable {
     case female = "Female"
     case male = "Male"
 }
 
+//MARK: Weight
 struct Weight: Codable {
     let partTwo, partOne: String?
 
@@ -89,6 +89,7 @@ struct Weight: Codable {
     }
 }
 
+//MARK: Height
 struct Height: Decodable {
     let partII, partI, blankPeriod, gaiden: String?
 
@@ -100,6 +101,7 @@ struct Height: Decodable {
     }
 }
 
+//MARK: Age
 struct Age: Decodable {
     let partTwo, partOne, academyGraduate, chuninPromotion: String?
     let borutoManga: String?
@@ -113,6 +115,7 @@ struct Age: Decodable {
     }
 }
 
+//MARK: Family
 struct Family: Decodable {
     let incarnationWithTheGodTree, depoweredForm, son, nephew: String?
     let adoptiveSon, father, adoptiveBrother, cousin: String?
@@ -131,13 +134,4 @@ struct Family: Decodable {
     }
 }
 
-enum NarutoAPI {
-    case baseURL
-    
-    var url: URL {
-        switch self {
-        case .baseURL:
-            return URL(string: "https://narutodb.xyz/api/character?page=1&limit=1431")!
-        }
-    }
-}
+

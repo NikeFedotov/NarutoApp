@@ -32,10 +32,9 @@ final class CharactersTableViewController: UITableViewController {
         
         setupNavigationBar()
         setupSearchController()
-        fetchCharacters()
+        fetchNaruto()
     }
     
-
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,9 +76,8 @@ extension CharactersTableViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
-    
-    private func fetchCharacters() {
-        networkManager.fetchCharacters(from: NarutoAPI.baseURL.url) { result in
+    private func fetchNaruto() {
+        networkManager.fetchNaruto(from: NarutoAPI.baseURL.url) { result in
             switch result {
             case .success(let characters):
                 self.naruto = characters
